@@ -15,8 +15,11 @@ set showmatch
 set showcmd
 
 " Show numbers.
-set number
-set relativenumber
+set nu
+
+" Position of the cursor and ruler
+set ruler
+set cursorline
 
 " Don't show the mode, since this will be shown by the status line.
 set noshowmode
@@ -25,6 +28,9 @@ set noshowmode
 " allowed to go in there (ie. the "must save first" error doesn't come up)
 set hidden
 
+" Tracking buffers
+set autoread
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -32,8 +38,9 @@ set backspace=indent,eol,start
 set nowrap
 
 " I don't like the backup and the swapfile thingies.
-set nobackup
-set noswapfile
+set backup
+set backupdir=~/.vim/backups
+set backupext=.bak
 
 " Use always the clipboard.
 " NOTE: this only works if you have vim with clipboard support. You can check
@@ -158,3 +165,5 @@ nnoremap K <nop>
 " Do nothing for <c-o>. I don't use this feature and it confuses me whenever I
 " misstype <c-p> (CtrlP plugin).
 nnoremap <c-o> <nop>
+
+

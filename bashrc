@@ -4,8 +4,15 @@ export LC_ALL=en_US.UTF-8
 
 # beautifying ls command
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ll='ls -lh --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias la='ls -lah --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+
+# Alias related to cp/mv/mkdir
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Alias related to find
+alias ff='find ~/ -name $1'
 
 # Alias related to cd
 alias ..='cd ..'
@@ -34,15 +41,6 @@ source_maybe() {
 source_maybe $HOME/.gitcompletion.sh
 alias gti=git
 
-# hg thingies.
-source_maybe $HOME/.hgcompletion.sh
-__hg_branch() {
-  if [ -d .hg ]; then
-    local b=`cat .hg/branch`
-    echo -e "\033[0;32m@\033[1;32m$b\033[0m"
-  fi
-}
-
 # Setting up PS1.
 PS1='\u:\w$(__hg_branch)$(__git_ps1 "\[\033[0;32m\]@\[\033[1;32m\]%s\[\033[0m\]\]") $ '
 
@@ -51,26 +49,10 @@ if [ -f $HOME/.rake_completion ]; then
     complete -C $HOME/.rake_completion -o default rake
 fi
 
-# KDE Paths
-export KDEDIR=$HOME/.kde
-export KDEDIRS=$KDEDIR
-export KF5_SRC=$HOME/Projects/kde/kf5
-
-# Export the standard paths to include KDE
-export PATH=/usr/local/heroku/bin:$PATH:$KDEDIR/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$KDEDIR/lib
-export XDG_DATA_DIRS=$XDG_DATA_DIRS:$KDEDIR/share
-
 # Export the CMake paths so it searches for KDE in the right places
 export CMAKE_PREFIX_PATH=$KDEDIR:$CMAKE_PREFIX_PATH
 export CMAKE_LIBRARY_PATH=$KDEDIR/lib:$CMAKE_LIBRARY_PATH
 export CMAKE_INCLUDE_PATH=$KDEDIR/include:$CMAKE_INCLUDE_PATH
-
-# Function to whip the KDevelop cache
-alias wduchain='rm -rf $HOME/.cache/kdevduchain/*'
-
-# Let's change to KF5 mode.
-alias frameworks='source $KF5_SRC/kf5.sh; eval `dbus-launch`; kdeinit5; echo'
 
 # Alias bundle exec
 alias be='bundle exec'
@@ -91,18 +73,11 @@ export PATH=$GOROOT/bin:$PATH:$GOPATH/bin
 export PATH=/opt/review:$PATH
 source_maybe $HOME/.review_completion.sh
 
-# The g utility. See: https://github.com/mssola/g
-source_maybe $HOME/.g.sh
-source_maybe $HOME/.gcompletion.sh
-
-# The td utility. See: https://github.com/mssola/td
-source_maybe $HOME/.tdcompletion.sh
-
 # Complete the `docker` command if possible.
 source_maybe $HOME/.dockercompletion.sh
 
 # Add the `scripts` dir to the path if possible. See:
-# https://github.com/mssola/scripts.
+# https://github.com/jloehel/scripts.
 if [ -d $HOME/.scripts ]; then
     export PATH=$HOME/.scripts:$PATH
 fi
@@ -110,3 +85,24 @@ fi
 # Finally get RVM straight.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Extraction for dummies
+extract () {
+    if [ -f $1 ]; then
+        case $1 in)
+            *.tar.gz)   tar xvzf $1     ;;
+            *.tar.bz2)  tar xvjf $1     ;;
+            *.rar)      rar x $1        ;;
+            *.bz2)      bunzip2 -d $1   ;;
+            *.zip)      unzip $1        ;;
+            *.7z)       7z x $1         ;;
+            *)          echo "Ist jetzt Katze! o.O"
+        esac
+    else
+        echo "File: '$1', not found."
+    fi
+}
+
+mktar() { tar cvf   "${1%%/}.tar"     "${1%%/}/"; }
+mktgz() { tar cvzf  "${1%%/}.tar.gz"  "${1%%/}/"; }
+mktar() { tar cvjf  "${1%%/}.tar.bz2" "${1%%/}/"; }

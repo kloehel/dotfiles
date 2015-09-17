@@ -12,20 +12,20 @@ git submodule update
 # Install the files on this repo.
 cp bashrc $HOME/.bashrc
 cp bash_profile $HOME/.bash_profile
-cp psqlrc $HOME/.psqlrc
-cp valgrindrc $HOME/.valgrindrc
-cp irbrc $HOME/.irbrc
-cp gemrc $HOME/.gemrc
+#cp psqlrc $HOME/.psqlrc
+#cp valgrindrc $HOME/.valgrindrc
+#cp irbrc $HOME/.irbrc
+#cp gemrc $HOME/.gemrc
 cp gitcompletion.sh $HOME/.gitcompletion.sh
 cp gitconfig $HOME/.gitconfig
 cp global.gitignore $HOME/.gitignore
-cp hgrc $HOME/.hgrc
-cp hgcompletion.sh $HOME/.hgcompletion.sh
-cp global.hgignore $HOME/.hgignore
+#cp hgrc $HOME/.hgrc
+#cp hgcompletion.sh $HOME/.hgcompletion.sh
+#cp global.hgignore $HOME/.hgignore
 cp tmux.conf $HOME/.tmux.conf
-cp rake_completion $HOME/.rake_completion
-cp rvmrc $HOME/.rvmrc
-chmod +x $HOME/.rake_completion
+#cp rake_completion $HOME/.rake_completion
+#cp rvmrc $HOME/.rvmrc
+#chmod +x $HOME/.rake_completion
 
 # Wipe out the current vim config and replace it with this one.
 rm -rf $HOME/.vim
@@ -33,29 +33,6 @@ rm -rf $HOME/.vimrc
 cp -rf vim $HOME/.vim
 cp vimrc $HOME/.vimrc
 vim +PluginInstall +qall
-
-# Update the style for KTE users (KWrite, Kate, KDevelop & Kile). Note that
-# there are two configs: the global one and the KDE one. The KDE one assumes
-# that all your KDE projects are stored in the `$HOME/Projects/kde` directory.
-# The global one is installed in the $HOME directory.
-mkdir -p $PROJECTS/kde
-cp kte/kde.kateconfig $PROJECTS/kde/.kateconfig
-cp kte/global.kateconfig $HOME/.kateconfig
-
-# Download and install the g utility
-cd /tmp
-rm -rf g
-git clone https://github.com/mssola/g
-cd g
-cp g.sh $HOME/.g.sh
-cp gcompletion.sh $HOME/.gcompletion.sh
-
-# Install my own custom scripts.
-cd /tmp
-rm -rf scripts
-git clone https://github.com/mssola/scripts
-cd scripts
-./install.sh
 
 # Download and install the review utility
 cat <<HERE
