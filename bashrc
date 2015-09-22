@@ -1,4 +1,3 @@
-
 # Set LC_ALL always to UTF-8
 export LC_ALL=en_US.UTF-8
 
@@ -24,7 +23,11 @@ export VISUAL=vim
 alias vi=vim
 
 # We want a full-fledged 256-color terminal.
-TERM=xterm-256color
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+  export TERM='xterm-256color'
+else
+  export TERM='xterm-color'
+fi
 
 # Set the LESS and the PAGER environment variables.
 export LESS="FSRX"
@@ -89,7 +92,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # Extraction for dummies
 extract () {
     if [ -f $1 ]; then
-        case $1 in)
+        case $1 in
             *.tar.gz)   tar xvzf $1     ;;
             *.tar.bz2)  tar xvjf $1     ;;
             *.rar)      rar x $1        ;;

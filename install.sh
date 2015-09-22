@@ -12,20 +12,14 @@ git submodule update
 # Install the files on this repo.
 cp bashrc $HOME/.bashrc
 cp bash_profile $HOME/.bash_profile
-#cp psqlrc $HOME/.psqlrc
-#cp valgrindrc $HOME/.valgrindrc
-#cp irbrc $HOME/.irbrc
-#cp gemrc $HOME/.gemrc
+cp gemrc $HOME/.gemrc
 cp gitcompletion.sh $HOME/.gitcompletion.sh
 cp gitconfig $HOME/.gitconfig
 cp global.gitignore $HOME/.gitignore
-#cp hgrc $HOME/.hgrc
-#cp hgcompletion.sh $HOME/.hgcompletion.sh
-#cp global.hgignore $HOME/.hgignore
 cp tmux.conf $HOME/.tmux.conf
-#cp rake_completion $HOME/.rake_completion
-#cp rvmrc $HOME/.rvmrc
-#chmod +x $HOME/.rake_completion
+cp rake_completion $HOME/.rake_completion
+cp rvmrc $HOME/.rvmrc
+chmod +x $HOME/.rake_completion
 
 # Wipe out the current vim config and replace it with this one.
 rm -rf $HOME/.vim
@@ -50,3 +44,8 @@ cd review
 
 # Install the completion file for the `docker` command.
 wget https://raw.githubusercontent.com/docker/docker/master/contrib/completion/bash/docker -O $HOME/.dockercompletion.sh
+
+# PEDA
+git clone https://github.com/longld/peda.git ~/.peda
+echo "source ~/peda/peda.py" >> ~/.gdbinit
+echo "DONE! debug your program with gdb and enjoy"

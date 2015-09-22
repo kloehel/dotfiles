@@ -106,8 +106,6 @@ set textwidth=79
 set tabstop=2
 set shiftwidth=2
 set cindent
-set autoindent
-set smarttab
 set expandtab
 set backspace=indent,eol,start
 
