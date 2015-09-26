@@ -10,6 +10,7 @@ git submodule init
 git submodule update
 
 # Install the files on this repo.
+cp profile $HOME/.profile
 cp bashrc $HOME/.bashrc
 cp bash_profile $HOME/.bash_profile
 cp gemrc $HOME/.gemrc
