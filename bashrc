@@ -17,34 +17,12 @@ alias cd..='cd ..'
 # Alias related to vim
 alias vi=vim
 
-# Sources the given file if it really exists.
-source_maybe() {
-    if [ -f $1 ]; then
-        source $1
-    fi
-}
-
-# git thingies.
-source_maybe $HOME/.gitcompletion.sh
-alias gti=git
-
 # Setting up PS1.
-PS1='\u:\w$(__hg_branch)$(__git_ps1 "\[\033[0;32m\]@\[\033[1;32m\]%s\[\033[0m\]\]") $ '
-
-# Rake completion
-if [ -f $HOME/.rake_completion ]; then
-    complete -C $HOME/.rake_completion -o default rake
-fi
-
-# Alias bundle exec
-alias be='bundle exec'
+PS1='\u:\w$(__git_ps1 "\[\033[0;32m\]@\[\033[1;32m\]%s\[\033[0m\]\]") $ '
 
 # Set the CC and CXX variables to clang, but allow a fallback shortcut, since
 # some projects do not support clang yet (e.g. HHVM).
 alias GCC='CC=/usr/bin/gcc CXX=/usr/bin/g++'
-
-# Complete the `docker` command if possible.
-source_maybe $HOME/.dockercompletion.sh
 
 # Extraction for dummies
 extract () {
