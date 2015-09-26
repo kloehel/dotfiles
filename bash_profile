@@ -28,7 +28,7 @@ export CXX=/usr/bin/clang++
 
 # Go things
 export GOPATH=$HOME/Projects/go/
-export PATH=$GOROOT/bin:$PATH:$GOPATH/bin
+export PATH=$GOROOT/bin:$PATH:${GOPATH}bin
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
