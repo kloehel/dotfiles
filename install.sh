@@ -17,6 +17,8 @@ cp gitcompletion.sh $HOME/.gitcompletion.sh
 cp gitconfig $HOME/.gitconfig
 cp global.gitignore $HOME/.gitignore
 cp tmux.conf $HOME/.tmux.conf
+cp irbrc $HOME/.irbrc
+cp psqlrc $HOME/.psqlrc
 cp rake_completion $HOME/.rake_completion
 cp rvmrc $HOME/.rvmrc
 chmod +x $HOME/.rake_completion
