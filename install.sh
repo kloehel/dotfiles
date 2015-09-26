@@ -10,7 +10,6 @@ git submodule init
 git submodule update
 
 # Install the files on this repo.
-cp profile $HOM/.profile
 cp bashrc $HOME/.bashrc
 cp bash_profile $HOME/.bash_profile
 cp gemrc $HOME/.gemrc
@@ -26,6 +25,7 @@ chmod +x $HOME/.rake_completion
 rm -rf $HOME/.vim
 rm -rf $HOME/.vimrc
 cp -rf vim $HOME/.vim
+mkdir -p $HOME/.vim/backups
 cp vimrc $HOME/.vimrc
 vim +PluginInstall +qall
 
@@ -33,6 +33,8 @@ vim +PluginInstall +qall
 wget https://raw.githubusercontent.com/docker/docker/master/contrib/completion/bash/docker -O $HOME/.dockercompletion.sh
 
 # PEDA
-git clone https://github.com/longld/peda.git ~/.peda
-echo "source ~/peda/peda.py" >> ~/.gdbinit
-echo "DONE! debug your program with gdb and enjoy"
+if [ ! -d "$HOME/.peda" ]; then
+    git clone https://github.com/longld/peda.git ~/.peda
+    echo "source ~/peda/peda.py" >> ~/.gdbinit
+    echo "DONE! debug your program with gdb and enjoy"
+fi

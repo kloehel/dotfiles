@@ -29,7 +29,7 @@ source_maybe $HOME/.gitcompletion.sh
 alias gti=git
 
 # Setting up PS1.
-PS1='\u:\w$(__hg_branch)$(__git_ps1 "\[\033[0;32m\]@\[\033[1;32m\]%s\[\033[0m\]\]") $ '
+PS1='\u:\w$(__git_ps1 "\[\033[0;32m\]@\[\033[1;32m\]%s\[\033[0m\]\]") $ '
 
 # Rake completion
 if [ -f $HOME/.rake_completion ]; then
@@ -66,3 +66,6 @@ extract () {
 mktar() { tar cvf   "${1%%/}.tar"     "${1%%/}/"; }
 mktgz() { tar cvzf  "${1%%/}.tar.gz"  "${1%%/}/"; }
 mktar() { tar cvjf  "${1%%/}.tar.bz2" "${1%%/}/"; }
+
+# irssi
+alias irssi='screen -R irssi'
